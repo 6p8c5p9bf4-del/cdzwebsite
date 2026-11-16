@@ -1,46 +1,41 @@
 ---
-// Detail page for a single holding. A page is built for every holding in
-// src/content/site.json that has a "detail" block (holding-01 is the example).
+// Detail page for a holding. A page is built for every holding in site.json that has a "detail" block
+// (only holding-01 for now). Copy that block onto another holding to give it a page too.
 import Base from '../../layouts/Base.astro';
 import Label from '../../components/Label.astro';
-import Picture from '../../components/Picture.astro';
-import content from '../../content/site.json';
+import Img from '../../components/Img.astro';
+import site from '../../content/site.json';
 
 export function getStaticPaths() {
-  return content.holdings.items
-    .filter((holding) => holding.detail)
-    .map((holding) => ({ params: { slug: holding.slug }, props: { holding } }));
+  return site.holdings.items
+    .filter((h) => h.detail)
+    .map((h) => ({ params: { slug: h.slug }, props: { holding: h } }));
 }
-
 const { holding } = Astro.props;
 const { detail } = holding;
 ---
 <Base title={holding.name} description={holding.description}>
-  <section style="padding-top: var(--header-h)">
-    <figure class="reveal"><Picture image={detail.heroImage} eager /></figure>
-  </section>
-
-  <section class="section" style="padding-top: clamp(48px, 7vw, 112px)">
+  <div class="reveal">
+    <Img image={detail.heroImage} shape="hero" eager />
+  </div>
+  <section class="section">
     <div class="container detail">
       <div class="detail__main reveal">
-        <Label text={content.holdings.label} />
-        <h1 class="h-large">{holding.name}</h1>
-        <p class="intro">{holding.description}</p>
-        <p class="lead">{detail.body}</p>
-        <a class="text-link" href={detail.website.href} rel="noopener">{detail.website.label}</a>
+        <Label text={site.holdings.label} />
+        <h1 class="h-lg">{holding.name}</h1>
+        <p class="lead">{holding.description}</p>
+        <p class="body">{detail.body}</p>
       </div>
-      <aside class="detail__side reveal" aria-label={detail.factsHeading}>
+      <aside class="detail__side reveal">
         <img class="detail__logo" src={holding.logo.src} alt={holding.logo.alt} width="320" height="120" />
-        <h2 class="label" style="margin-top: 40px">{detail.factsHeading}</h2>
+        <h2 class="label">{detail.factsHeading}</h2>
         <dl class="facts">
           {detail.facts.map((fact) => (
-            <div>
-              <dt>{fact.label}</dt>
-              <dd>{fact.value}</dd>
-            </div>
+            <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>
           ))}
         </dl>
-        <p style="margin-top: 32px"><a class="text-link" href={detail.back.href}>{detail.back.label}</a></p>
+        <a class="text-link" href={detail.website.href} rel="noopener">{detail.website.label}</a>
+        <a class="small" href={detail.back.href}>{detail.back.label}</a>
       </aside>
     </div>
   </section>

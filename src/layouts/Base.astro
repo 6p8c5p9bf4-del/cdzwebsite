@@ -1,11 +1,12 @@
 ---
 import '../styles/global.css';
-import content from '../content/site.json';
+import site from '../content/site.json';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { plain } from '../lib/format.js';
 
-const { title, description = content.site.description, overHero = false } = Astro.props;
-const pageTitle = title ? `${title} | ${content.site.name}` : content.site.name;
+const { title, description = site.site.description, overHero = false } = Astro.props;
+const pageTitle = title ? `${plain(title)} | ${site.site.name}` : site.site.name;
 ---
 <!doctype html>
 <html lang="en">
@@ -14,82 +15,80 @@ const pageTitle = title ? `${title} | ${content.site.name}` : content.site.name;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
-
-    <!-- HIDDEN FROM SEARCH ENGINES. Remove this tag (and update public/robots.txt) when the site is ready to launch. -->
+    <!-- HIDDEN FROM SEARCH ENGINES. Remove this line (and update public/robots.txt) when the site is ready to launch. -->
     <meta name="robots" content="noindex, nofollow" />
-
     <link rel="icon" href="/logos/favicon.ico" sizes="48x48" />
     <link rel="icon" href="/logos/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/logos/mark.svg" />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap"
     />
-
-    <script is:inline>
-      document.documentElement.classList.add('js');
-    </script>
+    <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
   <body>
-    <a class="skip-link" href="#main">{content.site.skipLink}</a>
+    <a class="skip-link" href="#main">{site.site.skipLink}</a>
     <Header overHero={overHero} />
-    <main id="main" tabindex="-1">
+    <main id="main" class={overHero ? '' : 'has-header-offset'}>
       <slot />
     </main>
     <Footer />
-
     <script>
-      // Header: add a hairline and solid background once the page is scrolled.
+      // Header: solid background once the page is scrolled.
       const header = document.querySelector('.site-header');
       const onScroll = () => header?.classList.toggle('is-scrolled', window.scrollY > 24);
       onScroll();
       window.addEventListener('scroll', onScroll, { passive: true });
 
-      // Mobile menu: full-screen overlay, works with keyboard (Tab, Enter, Escape).
+      // Mobile menu: full-screen overlay, closes with Escape, keeps keyboard focus inside the header.
       const toggle = document.querySelector('.menu-toggle');
-      const overlay = document.getElementById('menu-overlay');
-      const outside = [document.querySelector('main'), document.querySelector('.site-footer')];
+      const menu = document.getElementById('mobile-menu');
+      const outside = [document.getElementById('main'), document.querySelector('.site-footer')];
       const setMenu = (open) => {
-        if (!toggle || !overlay || !header) return;
-        overlay.hidden = !open;
+        if (!toggle || !menu || !header) return;
+        menu.hidden = !open;
         toggle.setAttribute('aria-expanded', String(open));
-        toggle.textContent = open ? toggle.dataset.close ?? '' : toggle.dataset.open ?? '';
+        toggle.textContent = open ? toggle.dataset.close : toggle.dataset.open;
         header.classList.toggle('menu-open', open);
         document.body.style.overflow = open ? 'hidden' : '';
         outside.forEach((el) => el && (open ? el.setAttribute('inert', '') : el.removeAttribute('inert')));
-        if (open) overlay.querySelector('a')?.focus();
       };
       toggle?.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
           setMenu(false);
           toggle.focus();
         }
       });
-      window.matchMedia('(min-width: 1000px)').addEventListener('change', (event) => event.matches && setMenu(false));
+      window.matchMedia('(min-width: 1000px)').addEventListener('change', (e) => e.matches && setMenu(false));
 
-      // Sections fade up as they scroll into view. Skipped when reduced motion is requested.
+      // Sections fade up as they scroll into view. Skipped when the device asks for reduced motion.
       const items = document.querySelectorAll('.reveal');
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduce || !('IntersectionObserver' in window)) {
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced || !('IntersectionObserver' in window)) {
         items.forEach((el) => el.classList.add('is-visible'));
       } else {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
-              }
-            });
-          },
+        const io = new IntersectionObserver(
+          (entries) => entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          }),
           { rootMargin: '0px 0px -8% 0px', threshold: 0.05 }
         );
-        items.forEach((el) => observer.observe(el));
+        items.forEach((el) => io.observe(el));
       }
+
+      // Contact form placeholder behaviour (the form is not connected yet).
+      const form = document.querySelector('form[data-not-connected]');
+      form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const status = form.querySelector('.form__status');
+        if (status) status.textContent = form.dataset.notConnected;
+      });
     </script>
   </body>
 </html>

@@ -1,26 +1,25 @@
 ---
-// The off-grid wall of holdings. Tile positions are set in src/styles/global.css (.pos-1 to .pos-12).
-import Picture from './Picture.astro';
-
+// The off-grid wall of holdings. Tile positions are set by the .pos-N rules in src/styles/global.css.
+import Img from './Img.astro';
 const { items } = Astro.props;
 ---
 <ul class="wall">
-  {items.map((holding, index) => (
-    <li class:list={['tile', `tile--${holding.shape}`, `pos-${index + 1}`, 'reveal']}>
-      {holding.detail ? (
-        <a class="tile__link" href={`/holdings/${holding.slug}`}>
-          <div class="tile__frame"><Picture image={holding.image} /></div>
-          <div class="tile__caption">
-            <p class="tile__name">{holding.name}</p>
-            <p class="tile__desc">{holding.description}</p>
-          </div>
+  {items.map((h, i) => (
+    <li class:list={['tile', `pos-${i + 1}`, 'reveal']}>
+      {h.detail ? (
+        <a class="tile__link" href={`/holdings/${h.slug}`}>
+          <Img image={h.image} shape={h.shape} />
+          <span class="tile__caption">
+            <span class="tile__name">{h.name}</span>
+            <span class="tile__desc">{h.description}</span>
+          </span>
         </a>
       ) : (
         <div>
-          <div class="tile__frame"><Picture image={holding.image} /></div>
+          <Img image={h.image} shape={h.shape} />
           <div class="tile__caption">
-            <p class="tile__name">{holding.name}</p>
-            <p class="tile__desc">{holding.description}</p>
+            <span class="tile__name">{h.name}</span>
+            <span class="tile__desc">{h.description}</span>
           </div>
         </div>
       )}

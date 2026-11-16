@@ -1,6 +1,6 @@
 # LOINNER website
 
-Static site built with [Astro](https://astro.build).
+A static site built with [Astro](https://astro.build).
 
 ## Run it
 
@@ -10,14 +10,12 @@ npm run dev      # preview at http://localhost:4321
 npm run build    # builds the site into dist/
 ```
 
-## Where things are
+## Change the content
 
-- `src/content/site.json`: all text on the site, in one file.
-- `public/images/`: all photos. Replace a file with a real photo of the same name.
-- `public/logos/`: wordmarks, logo mark, favicon and holding logos.
-- `PLACEHOLDERS.md`: checklist of everything still to replace.
-- `src/pages/`: one file per page. `src/components/` and `src/layouts/`: shared parts.
-- `src/styles/global.css`: all styling (colours, type, layout, motion).
+- **Text**: everything is in `src/content/site.json`.
+- **Images**: replace files in `public/images/` with real photos of the same file name.
+- **Logos**: replace files in `public/logos/`.
+- **Checklist**: `PLACEHOLDERS.md` lists every placeholder.
 
 ## Before launch
 

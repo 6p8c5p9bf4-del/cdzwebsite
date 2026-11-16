@@ -1,5 +1,4 @@
 ---
-// Small uppercase section label with a slash in front, e.g. "/ ABOUT".
-const { text } = Astro.props;
+const { text, as: Tag = 'p' } = Astro.props;
 ---
-<p class="label"><span aria-hidden="true">/</span>{text}</p>
+<Tag class="label"><span aria-hidden="true">/</span>{text}</Tag>

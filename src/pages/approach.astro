@@ -1,28 +1,17 @@
 ---
 import Base from '../layouts/Base.astro';
-import PageIntro from '../components/PageIntro.astro';
+import PageHead from '../components/PageHead.astro';
 import Split from '../components/Split.astro';
-import content from '../content/site.json';
-
-const { approach } = content;
+import site from '../content/site.json';
+const { approach } = site;
+const number = (i) => String(i + 1).padStart(2, '0');
 ---
 <Base title={approach.title}>
-  <section class="page-top">
+  <PageHead label={approach.label} heading={approach.heading} intro={approach.intro} />
+  <section class="section section--tight-top">
     <div class="container">
-      <PageIntro label={approach.label} heading={approach.heading} intro={approach.intro} />
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      {approach.principles.map((principle, index) => (
-        <Split
-          number={String(index + 1).padStart(2, '0')}
-          heading={principle.name}
-          body={principle.body}
-          image={principle.image}
-          reverse={index % 2 === 1}
-        />
+      {approach.principles.map((p, i) => (
+        <Split number={number(i)} heading={p.name} body={p.body} image={p.image} reverse={i % 2 === 1} />
       ))}
     </div>
   </section>

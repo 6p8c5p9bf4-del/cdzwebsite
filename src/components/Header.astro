@@ -1,51 +1,47 @@
 ---
-import content from '../content/site.json';
-
+import site from '../content/site.json';
 const { overHero = false } = Astro.props;
-const { nav, site, contact } = content;
-const current = Astro.url.pathname.replace(/\/$/, '') || '/';
-const isCurrent = (href) => (href === '/' ? current === '/' : current.startsWith(href));
-const contactLink = nav.find((item) => item.href === '/contact');
-const barLinks = nav.filter((item) => item.href !== '/contact');
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isCurrent = (href) => (href === '/' ? path === '/' : path.startsWith(href));
+const contact = site.nav.find((item) => item.href === '/contact');
 ---
-<header class:list={['site-header', { 'site-header--over': overHero }]}>
+<header class:list={['site-header', overHero && 'site-header--over']}>
   <div class="container site-header__inner">
-    <a class="wordmark" href="/" aria-label={`${site.name}, home`}>
-      <img class="wordmark__dark" src="/logos/wordmark-dark.svg" alt="" width="400" height="64" />
-      <img class="wordmark__light" src="/logos/wordmark-light.svg" alt="" width="400" height="64" />
+    <a class="wordmark" href="/" aria-label={`${site.site.name} home`}>
+      <img class="wordmark--dark" src="/logos/wordmark-dark.svg" alt={site.site.name} width="416" height="64" />
+      <img class="wordmark--light" src="/logos/wordmark-light.svg" alt={site.site.name} width="416" height="64" />
     </a>
 
-    <nav class="nav-desktop" aria-label="Main">
+    <nav class="site-nav" aria-label="Main">
       <ul>
-        {barLinks.map((item) => (
-          <li>
-            <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
-          </li>
+        {site.nav.map((item) => (
+          <li><a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a></li>
         ))}
       </ul>
-      {contactLink && <a class="btn btn--small" href={contactLink.href}>{contactLink.label}</a>}
+      {contact && <a class="btn btn--small" href={contact.href}>{contact.label}</a>}
     </nav>
 
     <button
       class="menu-toggle"
       type="button"
       aria-expanded="false"
-      aria-controls="menu-overlay"
-      data-open={site.menuOpen}
-      data-close={site.menuClose}
-    >{site.menuOpen}</button>
+      aria-controls="mobile-menu"
+      data-open={site.site.menuOpen}
+      data-close={site.site.menuClose}
+    >{site.site.menuOpen}</button>
 
-    <div class="menu-overlay" id="menu-overlay" hidden>
-      <nav aria-label="Main, mobile">
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <nav aria-label="Mobile">
         <ul>
-          {nav.map((item) => (
-            <li>
-              <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
-            </li>
+          {site.nav.map((item) => (
+            <li><a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a></li>
           ))}
         </ul>
       </nav>
-      <p class="small">{contact.email}<br />{contact.phone}</p>
+      <div class="mobile-menu__foot">
+        <span>{site.contact.email}</span>
+        <span>{site.contact.phone}</span>
+      </div>
     </div>
   </div>
 </header>

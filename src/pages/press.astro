@@ -1,25 +1,22 @@
 ---
 import Base from '../layouts/Base.astro';
-import PageIntro from '../components/PageIntro.astro';
-import content from '../content/site.json';
-
-const { press } = content;
+import PageHead from '../components/PageHead.astro';
+import site from '../content/site.json';
+const { press } = site;
 ---
 <Base title={press.title}>
-  <section class="page-top section" style="padding-bottom: var(--space-section)">
+  <PageHead label={press.label} heading={press.heading} intro={press.intro} />
+  <section class="section section--tight-top">
     <div class="container">
-      <PageIntro label={press.label} heading={press.heading} intro={press.intro} />
       <ul class="rows reveal">
         {press.articles.map((article) => (
           <li class="row row--article">
             <h2 class="row__title">{article.title}</h2>
             <p class="row__meta">{article.outlet}</p>
             <p class="row__meta">{article.date}</p>
-            <p>
-              <a class="text-link" href={article.href} rel="noopener">
-                {press.readLabel}<span class="visually-hidden">: {article.title}</span>
-              </a>
-            </p>
+            <a class="text-link" href={article.href} rel="noopener">
+              {press.readLabel}<span class="visually-hidden">: {article.title}</span>
+            </a>
           </li>
         ))}
       </ul>

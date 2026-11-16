@@ -1,0 +1,12 @@
+---
+import Label from './Label.astro';
+import { em } from '../lib/format.js';
+const { label, heading, intro } = Astro.props;
+---
+<section class="page-head">
+  <div class="container page-head__inner reveal">
+    <Label text={label} />
+    <h1 class="h-lg" set:html={em(heading)} />
+    {intro && <p class="lead">{intro}</p>}
+  </div>
+</section>

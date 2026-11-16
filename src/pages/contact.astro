@@ -1,81 +1,54 @@
 ---
 import Base from '../layouts/Base.astro';
-import PageIntro from '../components/PageIntro.astro';
-import content from '../content/site.json';
-
-const { contactPage, contact } = content;
-const { form } = contactPage;
+import PageHead from '../components/PageHead.astro';
+import site from '../content/site.json';
+const { contactPage: page, contact } = site;
+const { form } = page;
 ---
-<Base title={contactPage.title}>
-  <section class="page-top section" style="padding-bottom: var(--space-section)">
-    <div class="container">
-      <PageIntro label={contactPage.label} heading={contactPage.heading} intro={contactPage.intro} />
-
-      <div class="contact">
-        <dl class="contact__details reveal">
-          <div>
-            <dt>{contactPage.emailLabel}</dt>
-            <dd><a href={`mailto:${contact.email}`}>{contact.email}</a></dd>
-          </div>
-          <div>
-            <dt>{contactPage.addressLabel}</dt>
-            <dd>{contact.address}</dd>
-          </div>
-          <div>
-            <dt>{contactPage.phoneLabel}</dt>
-            <dd><a href={`tel:${contact.phone}`}>{contact.phone}</a></dd>
-          </div>
-        </dl>
-
-        <div class="contact__form reveal">
-          <h2 class="h-small" style="margin-bottom: 32px">{form.heading}</h2>
-
-          <!--
-            ============================================================
-            CONNECT THE FORM HERE
-            This form is NOT connected to anything yet: pressing the
-            button only shows the "not connected" message below.
-
-            To connect it, do ONE of these:
-              a) Form service (Formspree, Basin, Getform…): set the
-                 form's action to the URL the service gives you, e.g.
-                 action="https://formspree.io/f/XXXXXXX", keep
-                 method="post", and delete the <script> at the bottom
-                 of this file.
-              b) Your own endpoint: add a Vercel function (for example
-                 /api/contact) that emails the message, then set
-                 action="/api/contact" and delete the <script> below.
-            The field names sent are: name, email, message.
-            ============================================================
-          -->
-          <form class="form" id="contact-form" action="#" method="post" data-message={form.notConnected}>
-            <div class="field">
-              <label for="name">{form.name}</label>
-              <input id="name" name="name" type="text" autocomplete="name" required />
-            </div>
-            <div class="field">
-              <label for="email">{form.email}</label>
-              <input id="email" name="email" type="email" autocomplete="email" required />
-            </div>
-            <div class="field">
-              <label for="message">{form.message}</label>
-              <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-            <button class="btn btn--solid" type="submit">{form.submit}</button>
-            <p class="form__status" role="status" aria-live="polite"></p>
-          </form>
+<Base title={page.title}>
+  <PageHead label={page.label} heading={page.heading} intro={page.intro} />
+  <section class="section section--tight-top">
+    <div class="container contact">
+      <dl class="contact__details reveal">
+        <div>
+          <dt class="label"><span aria-hidden="true">/</span>{page.emailLabel}</dt>
+          <dd><a href={`mailto:${contact.email}`}>{contact.email}</a></dd>
         </div>
-      </div>
+        <div>
+          <dt class="label"><span aria-hidden="true">/</span>{page.addressLabel}</dt>
+          <dd>{contact.address}</dd>
+        </div>
+        <div>
+          <dt class="label"><span aria-hidden="true">/</span>{page.phoneLabel}</dt>
+          <dd><a href={`tel:${contact.phone}`}>{contact.phone}</a></dd>
+        </div>
+      </dl>
+
+      <!--
+        CONNECT THE FORM HERE.
+        This form does not send anything yet. To connect it:
+        1. Sign up with a form service (for example Formspree, Basin or Web3Forms) or build your own endpoint.
+        2. Put the service's URL in the action="" attribute below, e.g. action="https://formspree.io/f/your-id".
+        3. Delete the data-not-connected attribute, so the form submits normally
+           (it currently stops the submit and shows the "not connected" message from site.json).
+      -->
+      <form class="form reveal" action="#" method="post" data-not-connected={form.notConnected}>
+        <h2 class="h-sm">{form.heading}</h2>
+        <div class="field">
+          <label for="name">{form.name}</label>
+          <input id="name" name="name" type="text" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for="email">{form.email}</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div class="field">
+          <label for="message">{form.message}</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button class="btn btn--ink" type="submit">{form.submit}</button>
+        <p class="form__status" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </section>
-
-  <script>
-    // Placeholder behaviour until the form is connected (see the note above the form).
-    const formEl = document.getElementById('contact-form');
-    formEl?.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const status = formEl.querySelector('.form__status');
-      if (status) status.textContent = formEl.dataset.message ?? '';
-    });
-  </script>
 </Base>

@@ -698,6 +698,15 @@
       "notConnected": "This form is not connected yet. Please email us instead."
     }
   },
+  "notFound": {
+    "title": "Page not found",
+    "label": "404",
+    "heading": "This page could not be *found*",
+    "link": {
+      "label": "Back to home",
+      "href": "/"
+    }
+  },
   "privacy": {
     "title": "Privacy",
     "label": "Privacy",

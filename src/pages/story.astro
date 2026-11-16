@@ -1,23 +1,19 @@
 ---
 import Base from '../layouts/Base.astro';
-import PageIntro from '../components/PageIntro.astro';
-import Picture from '../components/Picture.astro';
+import PageHead from '../components/PageHead.astro';
+import Img from '../components/Img.astro';
 import Split from '../components/Split.astro';
-import content from '../content/site.json';
-
-const { story } = content;
+import site from '../content/site.json';
+const { story } = site;
 ---
 <Base title={story.title}>
-  <section class="page-top">
-    <div class="container">
-      <PageIntro label={story.label} heading={story.heading} intro={story.intro} />
-    </div>
-    <figure class="wide-image reveal"><Picture image={story.image} eager /></figure>
-  </section>
-
+  <PageHead label={story.label} heading={story.heading} intro={story.intro} />
+  <div class="container reveal">
+    <Img image={story.image} shape="hero" eager />
+  </div>
   <section class="section">
     <div class="container">
-      {story.sections.map((part, index) => <Split {...part} reverse={index % 2 === 1} />)}
+      {story.sections.map((part, i) => <Split {...part} reverse={i % 2 === 1} />)}
     </div>
   </section>
 </Base>

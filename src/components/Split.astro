@@ -1,18 +1,16 @@
 ---
-// Image beside text. Set reverse to put the image on the right.
+// Image beside text. `reverse` puts the image on the right. `shape` is landscape or portrait.
+import Img from './Img.astro';
 import Label from './Label.astro';
-import Picture from './Picture.astro';
-import { emphasise } from '../lib/format.js';
-
-const { label, number, heading, body, link, image, shape = 'landscape', reverse = false, level = 'h2' } = Astro.props;
-const Heading = level;
+import { em } from '../lib/format.js';
+const { label, heading, body, link, image, shape = 'landscape', reverse = false, number } = Astro.props;
 ---
-<div class:list={['split', `split--${shape}`, { 'split--reverse': reverse }, 'reveal']}>
-  <div class="split__media"><Picture image={image} /></div>
+<div class:list={['split', shape === 'portrait' && 'split--portrait', reverse && 'split--reverse', 'reveal']}>
+  <Img class="split__media" image={image} shape={shape === 'portrait' ? 'tall' : 'landscape'} />
   <div class="split__text">
-    {number && <p class="principle__number">{number}</p>}
+    {number && <p class="principle__num">{number}</p>}
     {label && <Label text={label} />}
-    <Heading class="h-mid" set:html={emphasise(heading)} />
+    <h2 class="h-md" set:html={em(heading)} />
     {body && <p class="body">{body}</p>}
     {link && <a class="text-link" href={link.href}>{link.label}</a>}
   </div>

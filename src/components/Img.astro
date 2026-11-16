@@ -1,0 +1,14 @@
+---
+// One image with its frame. `shape` sets the proportions: portrait, tall, landscape, square, wide or hero.
+const { image, shape = 'landscape', eager = false, class: className } = Astro.props;
+---
+<figure class:list={['media', `media--${shape}`, className]}>
+  <img
+    src={image.src}
+    alt={image.alt}
+    width={image.width}
+    height={image.height}
+    loading={eager ? 'eager' : 'lazy'}
+    decoding="async"
+  />
+</figure>

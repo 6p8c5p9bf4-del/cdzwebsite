@@ -1,14 +1,13 @@
 ---
-import content from '../content/site.json';
-
-const { nav, footer, contact, site } = content;
+import site from '../content/site.json';
+const { contact, footer } = site;
 ---
 <footer class="site-footer">
   <div class="container">
     <div class="site-footer__grid">
       <div class="site-footer__brand">
-        <a href="/" aria-label={`${site.name}, home`}>
-          <img src="/logos/wordmark-dark.svg" alt="" width="400" height="64" loading="lazy" />
+        <a href="/" aria-label={`${site.site.name} home`}>
+          <img src="/logos/wordmark-dark.svg" alt={site.site.name} width="416" height="64" loading="lazy" />
         </a>
         <address>
           <span>{contact.address}</span>
@@ -16,24 +15,21 @@ const { nav, footer, contact, site } = content;
           <a href={`mailto:${contact.email}`}>{contact.email}</a>
         </address>
       </div>
-
-      <nav class="site-footer__menu" aria-label="Footer">
-        <h2>{footer.menuHeading}</h2>
+      <nav aria-label="Footer">
+        <h2 class="label">{footer.menuHeading}</h2>
         <ul>
-          {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+          {site.nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
         </ul>
       </nav>
-
-      <div class="site-footer__social">
-        <h2>{footer.socialHeading}</h2>
+      <div>
+        <h2 class="label">{footer.socialHeading}</h2>
         <ul>
           {footer.social.map((item) => <li><a href={item.href} rel="noopener">{item.label}</a></li>)}
         </ul>
       </div>
     </div>
-
     <div class="site-footer__bottom">
-      <p>{footer.copyright}</p>
+      <span>{footer.copyright}</span>
       <a href={footer.privacy.href}>{footer.privacy.label}</a>
     </div>
   </div>
