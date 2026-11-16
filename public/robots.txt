@@ -1,0 +1,5 @@
+# The site is hidden from search engines until launch.
+# When ready: replace the two lines below with "User-agent: *" and "Allow: /",
+# and remove the noindex tag in src/layouts/Base.astro.
+User-agent: *
+Disallow: /

@@ -1,0 +1,95 @@
+---
+import '../styles/global.css';
+import content from '../content/site.json';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const { title, description = content.site.description, overHero = false } = Astro.props;
+const pageTitle = title ? `${title} | ${content.site.name}` : content.site.name;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+
+    <!-- HIDDEN FROM SEARCH ENGINES. Remove this tag (and update public/robots.txt) when the site is ready to launch. -->
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link rel="icon" href="/logos/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/logos/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/logos/mark.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap"
+    />
+
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{content.site.skipLink}</a>
+    <Header overHero={overHero} />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      // Header: add a hairline and solid background once the page is scrolled.
+      const header = document.querySelector('.site-header');
+      const onScroll = () => header?.classList.toggle('is-scrolled', window.scrollY > 24);
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      // Mobile menu: full-screen overlay, works with keyboard (Tab, Enter, Escape).
+      const toggle = document.querySelector('.menu-toggle');
+      const overlay = document.getElementById('menu-overlay');
+      const outside = [document.querySelector('main'), document.querySelector('.site-footer')];
+      const setMenu = (open) => {
+        if (!toggle || !overlay || !header) return;
+        overlay.hidden = !open;
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.textContent = open ? toggle.dataset.close ?? '' : toggle.dataset.open ?? '';
+        header.classList.toggle('menu-open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+        outside.forEach((el) => el && (open ? el.setAttribute('inert', '') : el.removeAttribute('inert')));
+        if (open) overlay.querySelector('a')?.focus();
+      };
+      toggle?.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+          setMenu(false);
+          toggle.focus();
+        }
+      });
+      window.matchMedia('(min-width: 1000px)').addEventListener('change', (event) => event.matches && setMenu(false));
+
+      // Sections fade up as they scroll into view. Skipped when reduced motion is requested.
+      const items = document.querySelectorAll('.reveal');
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) {
+        items.forEach((el) => el.classList.add('is-visible'));
+      } else {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: '0px 0px -8% 0px', threshold: 0.05 }
+        );
+        items.forEach((el) => observer.observe(el));
+      }
+    </script>
+  </body>
+</html>

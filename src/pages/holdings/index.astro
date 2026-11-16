@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import HoldingsWall from '../../components/HoldingsWall.astro';
+import content from '../../content/site.json';
+
+const { holdings } = content;
+---
+<Base title={holdings.title}>
+  <section class="page-top section" style="padding-bottom: var(--space-section)">
+    <div class="container">
+      <PageIntro label={holdings.label} heading={holdings.heading} intro={holdings.intro} />
+      <HoldingsWall items={holdings.items} />
+    </div>
+  </section>
+</Base>

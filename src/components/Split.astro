@@ -1,0 +1,19 @@
+---
+// Image beside text. Set reverse to put the image on the right.
+import Label from './Label.astro';
+import Picture from './Picture.astro';
+import { emphasise } from '../lib/format.js';
+
+const { label, number, heading, body, link, image, shape = 'landscape', reverse = false, level = 'h2' } = Astro.props;
+const Heading = level;
+---
+<div class:list={['split', `split--${shape}`, { 'split--reverse': reverse }, 'reveal']}>
+  <div class="split__media"><Picture image={image} /></div>
+  <div class="split__text">
+    {number && <p class="principle__number">{number}</p>}
+    {label && <Label text={label} />}
+    <Heading class="h-mid" set:html={emphasise(heading)} />
+    {body && <p class="body">{body}</p>}
+    {link && <a class="text-link" href={link.href}>{link.label}</a>}
+  </div>
+</div>

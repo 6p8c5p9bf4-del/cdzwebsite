@@ -1,0 +1,40 @@
+---
+import content from '../content/site.json';
+
+const { nav, footer, contact, site } = content;
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <a href="/" aria-label={`${site.name}, home`}>
+          <img src="/logos/wordmark-dark.svg" alt="" width="400" height="64" loading="lazy" />
+        </a>
+        <address>
+          <span>{contact.address}</span>
+          <a href={`tel:${contact.phone}`}>{contact.phone}</a>
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>
+        </address>
+      </div>
+
+      <nav class="site-footer__menu" aria-label="Footer">
+        <h2>{footer.menuHeading}</h2>
+        <ul>
+          {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        </ul>
+      </nav>
+
+      <div class="site-footer__social">
+        <h2>{footer.socialHeading}</h2>
+        <ul>
+          {footer.social.map((item) => <li><a href={item.href} rel="noopener">{item.label}</a></li>)}
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>{footer.copyright}</p>
+      <a href={footer.privacy.href}>{footer.privacy.label}</a>
+    </div>
+  </div>
+</footer>

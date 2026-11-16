@@ -1,0 +1,124 @@
+---
+import Base from '../layouts/Base.astro';
+import Label from '../components/Label.astro';
+import Picture from '../components/Picture.astro';
+import Split from '../components/Split.astro';
+import HoldingsWall from '../components/HoldingsWall.astro';
+import content from '../content/site.json';
+import { emphasise } from '../lib/format.js';
+
+const { home, holdings, press } = content;
+const { hero, about, approach, splits, closing } = home;
+const wallItems = holdings.items.slice(0, home.holdings.count);
+const pressItems = press.articles.slice(0, home.press.count);
+---
+<Base title={home.title} overHero>
+  <!-- 2. Hero -->
+  <section class="photo-section" aria-label="Introduction">
+    <div class="photo-section__media">
+      <Picture image={hero.image} eager class="hero-zoom" />
+    </div>
+    <div class="photo-section__content">
+      <h1 class="h-display">{hero.tagline}</h1>
+      <p class="lead">{hero.subtitle}</p>
+    </div>
+    <a class="scroll-cue" href="#about">{hero.scroll}</a>
+  </section>
+
+  <!-- 3. About -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="reveal">
+        <Label text={about.label} />
+        <h2 class="h-mid about__heading" set:html={emphasise(about.heading)} />
+      </div>
+      <div class="about__images">
+        {about.images.map((image) => <figure class="reveal"><Picture image={image} /></figure>)}
+      </div>
+      <div class="about__text reveal">
+        <p class="lead">{about.body}</p>
+        <p><a class="text-link" href={about.link.href}>{about.link.label}</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Approach -->
+  <section class="section section--tight-top">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <Label text={approach.label} />
+          <h2 class="h-mid" set:html={emphasise(approach.heading)} />
+        </div>
+        <div class="section-head__side">
+          <p class="intro">{approach.intro}</p>
+          <a class="text-link" href={approach.link.href}>{approach.link.label}</a>
+        </div>
+      </div>
+      <figure class="approach__wide reveal"><Picture image={approach.image} /></figure>
+      <ul class="cards">
+        {approach.cards.map((card) => (
+          <li class="card reveal">
+            <Picture image={card.image} />
+            <h3 class="h-small">{card.name}</h3>
+            <p>{card.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. Split blocks: Story, then Team reversed -->
+  <section class="section section--tight-top" aria-label="Story and team">
+    <div class="container">
+      {splits.map((block, index) => <Split {...block} reverse={index % 2 === 1} />)}
+    </div>
+  </section>
+
+  <!-- 6. Holdings, the off-grid wall -->
+  <section class="section section--tight-top">
+    <div class="container">
+      <div class="section-head section-head--row reveal">
+        <div>
+          <Label text={home.holdings.label} />
+          <h2 class="h-mid" set:html={emphasise(home.holdings.heading)} />
+        </div>
+        <a class="text-link" href={home.holdings.link.href}>{home.holdings.link.label}<span class="visually-hidden"> holdings</span></a>
+      </div>
+      <HoldingsWall items={wallItems} />
+    </div>
+  </section>
+
+  <!-- 7. Press -->
+  <section class="section section--tight-top">
+    <div class="container">
+      <div class="section-head section-head--row reveal">
+        <div>
+          <Label text={home.press.label} />
+          <h2 class="h-mid" set:html={emphasise(home.press.heading)} />
+        </div>
+        <a class="text-link" href={home.press.link.href}>{home.press.link.label}<span class="visually-hidden"> press</span></a>
+      </div>
+      <ul class="rows reveal">
+        {pressItems.map((article) => (
+          <li class="row">
+            <p class="row__title"><a href={article.href}>{article.title}</a></p>
+            <p class="row__meta row__meta--end">{article.date}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 8. Closing -->
+  <section class="photo-section photo-section--closing" aria-label="Get in touch">
+    <div class="photo-section__media"><Picture image={closing.image} /></div>
+    <div class="photo-section__content reveal">
+      <h2 class="h-large" set:html={emphasise(closing.heading)} />
+      <div class="photo-section__buttons">
+        <a class="btn btn--light" href={closing.buttons[0].href}>{closing.buttons[0].label}</a>
+        <a class="btn btn--ghost" href={closing.buttons[1].href}>{closing.buttons[1].label}</a>
+      </div>
+    </div>
+  </section>
+</Base>

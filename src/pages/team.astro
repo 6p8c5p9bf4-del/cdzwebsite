@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import PageIntro from '../components/PageIntro.astro';
+import Picture from '../components/Picture.astro';
+import content from '../content/site.json';
+
+const { team } = content;
+---
+<Base title={team.title}>
+  <section class="page-top section" style="padding-bottom: var(--space-section)">
+    <div class="container">
+      <PageIntro label={team.label} heading={team.heading} intro={team.intro} />
+      <ul class="people">
+        {team.people.map((person) => (
+          <li class="person reveal">
+            <Picture image={person.image} />
+            <h2>{person.name}</h2>
+            <p>{person.role}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,12 @@
+---
+// Top of every inner page: label, large heading, short intro.
+import Label from './Label.astro';
+import { emphasise } from '../lib/format.js';
+
+const { label, heading, intro } = Astro.props;
+---
+<div class="page-intro reveal">
+  <Label text={label} />
+  <h1 class="h-large" set:html={emphasise(heading)} />
+  {intro && <p class="intro">{intro}</p>}
+</div>

@@ -1,0 +1,710 @@
+{
+  "_readme": "All site text lives in this file. Replace every [bracketed placeholder]. Put *asterisks* around the one word in a heading that should be italic. Do not rename the keys.",
+  "site": {
+    "name": "LOINNER",
+    "description": "[Site description for the browser tab and link previews, 15–25 words]",
+    "skipLink": "Skip to content",
+    "menuOpen": "Menu",
+    "menuClose": "Close"
+  },
+  "nav": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Story",
+      "href": "/story"
+    },
+    {
+      "label": "Approach",
+      "href": "/approach"
+    },
+    {
+      "label": "Holdings",
+      "href": "/holdings"
+    },
+    {
+      "label": "Team",
+      "href": "/team"
+    },
+    {
+      "label": "Press",
+      "href": "/press"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact"
+    }
+  ],
+  "contact": {
+    "address": "[STREET ADDRESS, CITY]",
+    "phone": "[PHONE]",
+    "email": "[EMAIL]"
+  },
+  "footer": {
+    "menuHeading": "Menu",
+    "socialHeading": "Follow",
+    "social": [
+      {
+        "label": "LinkedIn",
+        "href": "#"
+      },
+      {
+        "label": "Instagram",
+        "href": "#"
+      }
+    ],
+    "copyright": "© [YEAR] LOINNER",
+    "privacy": {
+      "label": "Privacy",
+      "href": "/privacy"
+    }
+  },
+  "home": {
+    "title": "[Home page title for the browser tab, 4–8 words]",
+    "hero": {
+      "tagline": "[TAGLINE, 3 to 6 words]",
+      "subtitle": "[One sentence saying what the firm does and for whom, 12–20 words]",
+      "scroll": "Scroll",
+      "image": {
+        "src": "/images/hero.jpg",
+        "alt": "[Alt text: describe the hero architecture photo]",
+        "width": 2400,
+        "height": 1500
+      }
+    },
+    "about": {
+      "label": "About",
+      "heading": "[About heading with one *italic* word, 6–10 words]",
+      "images": [
+        {
+          "src": "/images/about-1.jpg",
+          "alt": "[Alt text: describe about photo 1]",
+          "width": 1200,
+          "height": 1600
+        },
+        {
+          "src": "/images/about-2.jpg",
+          "alt": "[Alt text: describe about photo 2]",
+          "width": 1200,
+          "height": 1600
+        }
+      ],
+      "body": "[One longer paragraph about the firm: who you are, what you invest in and why it matters, 60–90 words]",
+      "link": {
+        "label": "[Our story →]",
+        "href": "/story"
+      }
+    },
+    "approach": {
+      "label": "Approach",
+      "heading": "[Approach heading with one *italic* word, 5–9 words]",
+      "intro": "[One line introducing how you invest, 12–20 words]",
+      "link": {
+        "label": "[See our approach →]",
+        "href": "/approach"
+      },
+      "image": {
+        "src": "/images/approach-wide.jpg",
+        "alt": "[Alt text: describe the wide approach photo]",
+        "width": 2400,
+        "height": 1200
+      },
+      "cards": [
+        {
+          "name": "[Principle 1 name, 1–3 words]",
+          "text": "[One line about principle 1, 8–14 words]",
+          "image": {
+            "src": "/images/principle-1.jpg",
+            "alt": "[Alt text: describe the photo for principle 1]",
+            "width": 1200,
+            "height": 1500
+          }
+        },
+        {
+          "name": "[Principle 2 name, 1–3 words]",
+          "text": "[One line about principle 2, 8–14 words]",
+          "image": {
+            "src": "/images/principle-2.jpg",
+            "alt": "[Alt text: describe the photo for principle 2]",
+            "width": 1200,
+            "height": 1500
+          }
+        },
+        {
+          "name": "[Principle 3 name, 1–3 words]",
+          "text": "[One line about principle 3, 8–14 words]",
+          "image": {
+            "src": "/images/principle-3.jpg",
+            "alt": "[Alt text: describe the photo for principle 3]",
+            "width": 1200,
+            "height": 1500
+          }
+        }
+      ]
+    },
+    "splits": [
+      {
+        "label": "Story",
+        "heading": "[Sub-heading about the firm's story with one *italic* word, 5–9 words]",
+        "link": {
+          "label": "[Read our story →]",
+          "href": "/story"
+        },
+        "image": {
+          "src": "/images/split-story.jpg",
+          "alt": "[Alt text: describe the story photo]",
+          "width": 1600,
+          "height": 1200
+        },
+        "shape": "landscape"
+      },
+      {
+        "label": "Team",
+        "heading": "[Sub-heading about the team with one *italic* word, 5–9 words]",
+        "link": {
+          "label": "[Meet the team →]",
+          "href": "/team"
+        },
+        "image": {
+          "src": "/images/split-team.jpg",
+          "alt": "[Alt text: describe the team photo]",
+          "width": 1200,
+          "height": 1500
+        },
+        "shape": "portrait"
+      }
+    ],
+    "holdings": {
+      "label": "Holdings",
+      "heading": "[Holdings heading with one *italic* word, 4–8 words]",
+      "link": {
+        "label": "View all",
+        "href": "/holdings"
+      },
+      "count": 8
+    },
+    "press": {
+      "label": "Press",
+      "heading": "[Press heading with one *italic* word, 4–8 words]",
+      "link": {
+        "label": "View all",
+        "href": "/press"
+      },
+      "count": 3
+    },
+    "closing": {
+      "heading": "[Closing heading with one *italic* word, 4–8 words]",
+      "image": {
+        "src": "/images/closing.jpg",
+        "alt": "[Alt text: describe the closing background photo]",
+        "width": 2400,
+        "height": 1400
+      },
+      "buttons": [
+        {
+          "label": "Contact us",
+          "href": "/contact"
+        },
+        {
+          "label": "Our approach",
+          "href": "/approach"
+        }
+      ]
+    }
+  },
+  "story": {
+    "title": "Story",
+    "label": "Story",
+    "heading": "[Story page heading with one *italic* word, 5–9 words]",
+    "intro": "[One or two sentences opening the firm's story, 20–35 words]",
+    "image": {
+      "src": "/images/story-hero.jpg",
+      "alt": "[Alt text: describe the story hero photo]",
+      "width": 2400,
+      "height": 1350
+    },
+    "sections": [
+      {
+        "label": "Beginnings",
+        "heading": "[Heading for story part 1 with one *italic* word, 4–8 words]",
+        "body": "[2–3 sentences about how and why the firm was founded, 40–70 words]",
+        "image": {
+          "src": "/images/story-1.jpg",
+          "alt": "[Alt text: describe story photo 1]",
+          "width": 1600,
+          "height": 1200
+        },
+        "shape": "landscape"
+      },
+      {
+        "label": "Growth",
+        "heading": "[Heading for story part 2 with one *italic* word, 4–8 words]",
+        "body": "[2–3 sentences about how the firm grew and what it learned, 40–70 words]",
+        "image": {
+          "src": "/images/story-2.jpg",
+          "alt": "[Alt text: describe story photo 2]",
+          "width": 1200,
+          "height": 1500
+        },
+        "shape": "portrait"
+      },
+      {
+        "label": "Today",
+        "heading": "[Heading for story part 3 with one *italic* word, 4–8 words]",
+        "body": "[2–3 sentences about where the firm is today and what comes next, 40–70 words]",
+        "image": {
+          "src": "/images/story-3.jpg",
+          "alt": "[Alt text: describe story photo 3]",
+          "width": 1600,
+          "height": 1200
+        },
+        "shape": "landscape"
+      }
+    ]
+  },
+  "approach": {
+    "title": "Approach",
+    "label": "Approach",
+    "heading": "[Approach page heading with one *italic* word, 5–9 words]",
+    "intro": "[One or two sentences summing up how you invest, 20–35 words]",
+    "principles": [
+      {
+        "name": "[Principle 01 name, 2–5 words]",
+        "body": "[Short paragraph explaining principle 01 and how it shows up in your decisions, 40–60 words]",
+        "image": {
+          "src": "/images/approach-01.jpg",
+          "alt": "[Alt text: describe the photo for principle 01]",
+          "width": 1600,
+          "height": 1200
+        }
+      },
+      {
+        "name": "[Principle 02 name, 2–5 words]",
+        "body": "[Short paragraph explaining principle 02 and how it shows up in your decisions, 40–60 words]",
+        "image": {
+          "src": "/images/approach-02.jpg",
+          "alt": "[Alt text: describe the photo for principle 02]",
+          "width": 1600,
+          "height": 1200
+        }
+      },
+      {
+        "name": "[Principle 03 name, 2–5 words]",
+        "body": "[Short paragraph explaining principle 03 and how it shows up in your decisions, 40–60 words]",
+        "image": {
+          "src": "/images/approach-03.jpg",
+          "alt": "[Alt text: describe the photo for principle 03]",
+          "width": 1600,
+          "height": 1200
+        }
+      },
+      {
+        "name": "[Principle 04 name, 2–5 words]",
+        "body": "[Short paragraph explaining principle 04 and how it shows up in your decisions, 40–60 words]",
+        "image": {
+          "src": "/images/approach-04.jpg",
+          "alt": "[Alt text: describe the photo for principle 04]",
+          "width": 1600,
+          "height": 1200
+        }
+      }
+    ]
+  },
+  "holdings": {
+    "title": "Holdings",
+    "label": "Holdings",
+    "heading": "[Holdings page heading with one *italic* word, 4–8 words]",
+    "intro": "[One or two sentences about the kinds of companies you hold, 20–35 words]",
+    "items": [
+      {
+        "slug": "holding-01",
+        "name": "[Holding 01 name]",
+        "description": "[One line about holding 01, 6–10 words]",
+        "shape": "portrait",
+        "image": {
+          "src": "/images/holding-01.jpg",
+          "alt": "[Alt text: describe the photo of holding 01]",
+          "width": 1200,
+          "height": 1600
+        },
+        "logo": {
+          "src": "/logos/holding-01.svg",
+          "alt": "[Holding 01 name] logo"
+        },
+        "detail": {
+          "heroImage": {
+            "src": "/images/holding-01-hero.jpg",
+            "alt": "[Alt text: describe the wide photo of holding 01]",
+            "width": 2400,
+            "height": 1350
+          },
+          "body": "[Description of holding 01: what the company does, why you invested and what has happened since, 80–120 words]",
+          "factsHeading": "Key facts",
+          "facts": [
+            {
+              "label": "Sector",
+              "value": "[Sector]"
+            },
+            {
+              "label": "Location",
+              "value": "[City, Country]"
+            },
+            {
+              "label": "Invested since",
+              "value": "[Year]"
+            },
+            {
+              "label": "Ownership",
+              "value": "[Stake or role, 2–5 words]"
+            }
+          ],
+          "website": {
+            "label": "[Visit holding 01 website →]",
+            "href": "#"
+          },
+          "back": {
+            "label": "All holdings",
+            "href": "/holdings"
+          }
+        }
+      },
+      {
+        "slug": "holding-02",
+        "name": "[Holding 02 name]",
+        "description": "[One line about holding 02, 6–10 words]",
+        "shape": "landscape",
+        "image": {
+          "src": "/images/holding-02.jpg",
+          "alt": "[Alt text: describe the photo of holding 02]",
+          "width": 1600,
+          "height": 1200
+        },
+        "logo": {
+          "src": "/logos/holding-02.svg",
+          "alt": "[Holding 02 name] logo"
+        }
+      },
+      {
+        "slug": "holding-03",
+        "name": "[Holding 03 name]",
+        "description": "[One line about holding 03, 6–10 words]",
+        "shape": "square",
+        "image": {
+          "src": "/images/holding-03.jpg",
+          "alt": "[Alt text: describe the photo of holding 03]",
+          "width": 1200,
+          "height": 1200
+        },
+        "logo": {
+          "src": "/logos/holding-03.svg",
+          "alt": "[Holding 03 name] logo"
+        }
+      },
+      {
+        "slug": "holding-04",
+        "name": "[Holding 04 name]",
+        "description": "[One line about holding 04, 6–10 words]",
+        "shape": "landscape",
+        "image": {
+          "src": "/images/holding-04.jpg",
+          "alt": "[Alt text: describe the photo of holding 04]",
+          "width": 1600,
+          "height": 1200
+        },
+        "logo": {
+          "src": "/logos/holding-04.svg",
+          "alt": "[Holding 04 name] logo"
+        }
+      },
+      {
+        "slug": "holding-05",
+        "name": "[Holding 05 name]",
+        "description": "[One line about holding 05, 6–10 words]",
+        "shape": "portrait",
+        "image": {
+          "src": "/images/holding-05.jpg",
+          "alt": "[Alt text: describe the photo of holding 05]",
+          "width": 1200,
+          "height": 1600
+        },
+        "logo": {
+          "src": "/logos/holding-05.svg",
+          "alt": "[Holding 05 name] logo"
+        }
+      },
+      {
+        "slug": "holding-06",
+        "name": "[Holding 06 name]",
+        "description": "[One line about holding 06, 6–10 words]",
+        "shape": "square",
+        "image": {
+          "src": "/images/holding-06.jpg",
+          "alt": "[Alt text: describe the photo of holding 06]",
+          "width": 1200,
+          "height": 1200
+        },
+        "logo": {
+          "src": "/logos/holding-06.svg",
+          "alt": "[Holding 06 name] logo"
+        }
+      },
+      {
+        "slug": "holding-07",
+        "name": "[Holding 07 name]",
+        "description": "[One line about holding 07, 6–10 words]",
+        "shape": "portrait",
+        "image": {
+          "src": "/images/holding-07.jpg",
+          "alt": "[Alt text: describe the photo of holding 07]",
+          "width": 1200,
+          "height": 1600
+        },
+        "logo": {
+          "src": "/logos/holding-07.svg",
+          "alt": "[Holding 07 name] logo"
+        }
+      },
+      {
+        "slug": "holding-08",
+        "name": "[Holding 08 name]",
+        "description": "[One line about holding 08, 6–10 words]",
+        "shape": "landscape",
+        "image": {
+          "src": "/images/holding-08.jpg",
+          "alt": "[Alt text: describe the photo of holding 08]",
+          "width": 1600,
+          "height": 1200
+        },
+        "logo": {
+          "src": "/logos/holding-08.svg",
+          "alt": "[Holding 08 name] logo"
+        }
+      },
+      {
+        "slug": "holding-09",
+        "name": "[Holding 09 name]",
+        "description": "[One line about holding 09, 6–10 words]",
+        "shape": "landscape",
+        "image": {
+          "src": "/images/holding-09.jpg",
+          "alt": "[Alt text: describe the photo of holding 09]",
+          "width": 1600,
+          "height": 1200
+        },
+        "logo": {
+          "src": "/logos/holding-09.svg",
+          "alt": "[Holding 09 name] logo"
+        }
+      },
+      {
+        "slug": "holding-10",
+        "name": "[Holding 10 name]",
+        "description": "[One line about holding 10, 6–10 words]",
+        "shape": "square",
+        "image": {
+          "src": "/images/holding-10.jpg",
+          "alt": "[Alt text: describe the photo of holding 10]",
+          "width": 1200,
+          "height": 1200
+        },
+        "logo": {
+          "src": "/logos/holding-10.svg",
+          "alt": "[Holding 10 name] logo"
+        }
+      },
+      {
+        "slug": "holding-11",
+        "name": "[Holding 11 name]",
+        "description": "[One line about holding 11, 6–10 words]",
+        "shape": "portrait",
+        "image": {
+          "src": "/images/holding-11.jpg",
+          "alt": "[Alt text: describe the photo of holding 11]",
+          "width": 1200,
+          "height": 1600
+        },
+        "logo": {
+          "src": "/logos/holding-11.svg",
+          "alt": "[Holding 11 name] logo"
+        }
+      },
+      {
+        "slug": "holding-12",
+        "name": "[Holding 12 name]",
+        "description": "[One line about holding 12, 6–10 words]",
+        "shape": "landscape",
+        "image": {
+          "src": "/images/holding-12.jpg",
+          "alt": "[Alt text: describe the photo of holding 12]",
+          "width": 1600,
+          "height": 1200
+        },
+        "logo": {
+          "src": "/logos/holding-12.svg",
+          "alt": "[Holding 12 name] logo"
+        }
+      }
+    ]
+  },
+  "team": {
+    "title": "Team",
+    "label": "Team",
+    "heading": "[Team page heading with one *italic* word, 4–8 words]",
+    "intro": "[One or two sentences about the people behind the firm, 20–35 words]",
+    "people": [
+      {
+        "name": "[Full name 01]",
+        "role": "[Role / title]",
+        "image": {
+          "src": "/images/team-01.jpg",
+          "alt": "[Alt text: portrait of team member 01]",
+          "width": 1200,
+          "height": 1500
+        }
+      },
+      {
+        "name": "[Full name 02]",
+        "role": "[Role / title]",
+        "image": {
+          "src": "/images/team-02.jpg",
+          "alt": "[Alt text: portrait of team member 02]",
+          "width": 1200,
+          "height": 1500
+        }
+      },
+      {
+        "name": "[Full name 03]",
+        "role": "[Role / title]",
+        "image": {
+          "src": "/images/team-03.jpg",
+          "alt": "[Alt text: portrait of team member 03]",
+          "width": 1200,
+          "height": 1500
+        }
+      },
+      {
+        "name": "[Full name 04]",
+        "role": "[Role / title]",
+        "image": {
+          "src": "/images/team-04.jpg",
+          "alt": "[Alt text: portrait of team member 04]",
+          "width": 1200,
+          "height": 1500
+        }
+      },
+      {
+        "name": "[Full name 05]",
+        "role": "[Role / title]",
+        "image": {
+          "src": "/images/team-05.jpg",
+          "alt": "[Alt text: portrait of team member 05]",
+          "width": 1200,
+          "height": 1500
+        }
+      },
+      {
+        "name": "[Full name 06]",
+        "role": "[Role / title]",
+        "image": {
+          "src": "/images/team-06.jpg",
+          "alt": "[Alt text: portrait of team member 06]",
+          "width": 1200,
+          "height": 1500
+        }
+      },
+      {
+        "name": "[Full name 07]",
+        "role": "[Role / title]",
+        "image": {
+          "src": "/images/team-07.jpg",
+          "alt": "[Alt text: portrait of team member 07]",
+          "width": 1200,
+          "height": 1500
+        }
+      },
+      {
+        "name": "[Full name 08]",
+        "role": "[Role / title]",
+        "image": {
+          "src": "/images/team-08.jpg",
+          "alt": "[Alt text: portrait of team member 08]",
+          "width": 1200,
+          "height": 1500
+        }
+      }
+    ]
+  },
+  "press": {
+    "title": "Press",
+    "label": "Press",
+    "heading": "[Press page heading with one *italic* word, 4–8 words]",
+    "intro": "[One sentence about press coverage and who to contact for media enquiries, 15–25 words]",
+    "readLabel": "Read article",
+    "articles": [
+      {
+        "title": "[Article title 01, 6–12 words]",
+        "outlet": "[Outlet name]",
+        "date": "[DD Month YYYY]",
+        "href": "#"
+      },
+      {
+        "title": "[Article title 02, 6–12 words]",
+        "outlet": "[Outlet name]",
+        "date": "[DD Month YYYY]",
+        "href": "#"
+      },
+      {
+        "title": "[Article title 03, 6–12 words]",
+        "outlet": "[Outlet name]",
+        "date": "[DD Month YYYY]",
+        "href": "#"
+      },
+      {
+        "title": "[Article title 04, 6–12 words]",
+        "outlet": "[Outlet name]",
+        "date": "[DD Month YYYY]",
+        "href": "#"
+      },
+      {
+        "title": "[Article title 05, 6–12 words]",
+        "outlet": "[Outlet name]",
+        "date": "[DD Month YYYY]",
+        "href": "#"
+      },
+      {
+        "title": "[Article title 06, 6–12 words]",
+        "outlet": "[Outlet name]",
+        "date": "[DD Month YYYY]",
+        "href": "#"
+      }
+    ]
+  },
+  "contactPage": {
+    "title": "Contact",
+    "label": "Contact",
+    "heading": "[Contact page heading with one *italic* word, 4–8 words]",
+    "intro": "[One or two sentences inviting people to get in touch, 15–30 words]",
+    "emailLabel": "Email",
+    "addressLabel": "Address",
+    "phoneLabel": "Phone",
+    "form": {
+      "heading": "Send a message",
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Send message",
+      "notConnected": "This form is not connected yet. Please email us instead."
+    }
+  },
+  "privacy": {
+    "title": "Privacy",
+    "label": "Privacy",
+    "heading": "[Privacy page heading, 2–5 words]",
+    "body": [
+      "[Privacy policy, paragraph 1: what data you collect and why, 60–120 words]",
+      "[Privacy policy, paragraph 2: how data is stored, shared and how to request removal, 60–120 words]"
+    ]
+  }
+}

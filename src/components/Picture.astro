@@ -1,0 +1,13 @@
+---
+// One image slot. Sizes come from src/content/site.json so the layout never jumps while loading.
+const { image, eager = false, class: className } = Astro.props;
+---
+<img
+  class={className}
+  src={image.src}
+  alt={image.alt}
+  width={image.width}
+  height={image.height}
+  loading={eager ? 'eager' : 'lazy'}
+  decoding="async"
+/>

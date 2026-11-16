@@ -1,0 +1,81 @@
+---
+import Base from '../layouts/Base.astro';
+import PageIntro from '../components/PageIntro.astro';
+import content from '../content/site.json';
+
+const { contactPage, contact } = content;
+const { form } = contactPage;
+---
+<Base title={contactPage.title}>
+  <section class="page-top section" style="padding-bottom: var(--space-section)">
+    <div class="container">
+      <PageIntro label={contactPage.label} heading={contactPage.heading} intro={contactPage.intro} />
+
+      <div class="contact">
+        <dl class="contact__details reveal">
+          <div>
+            <dt>{contactPage.emailLabel}</dt>
+            <dd><a href={`mailto:${contact.email}`}>{contact.email}</a></dd>
+          </div>
+          <div>
+            <dt>{contactPage.addressLabel}</dt>
+            <dd>{contact.address}</dd>
+          </div>
+          <div>
+            <dt>{contactPage.phoneLabel}</dt>
+            <dd><a href={`tel:${contact.phone}`}>{contact.phone}</a></dd>
+          </div>
+        </dl>
+
+        <div class="contact__form reveal">
+          <h2 class="h-small" style="margin-bottom: 32px">{form.heading}</h2>
+
+          <!--
+            ============================================================
+            CONNECT THE FORM HERE
+            This form is NOT connected to anything yet: pressing the
+            button only shows the "not connected" message below.
+
+            To connect it, do ONE of these:
+              a) Form service (Formspree, Basin, Getform…): set the
+                 form's action to the URL the service gives you, e.g.
+                 action="https://formspree.io/f/XXXXXXX", keep
+                 method="post", and delete the <script> at the bottom
+                 of this file.
+              b) Your own endpoint: add a Vercel function (for example
+                 /api/contact) that emails the message, then set
+                 action="/api/contact" and delete the <script> below.
+            The field names sent are: name, email, message.
+            ============================================================
+          -->
+          <form class="form" id="contact-form" action="#" method="post" data-message={form.notConnected}>
+            <div class="field">
+              <label for="name">{form.name}</label>
+              <input id="name" name="name" type="text" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="email">{form.email}</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="field">
+              <label for="message">{form.message}</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button class="btn btn--solid" type="submit">{form.submit}</button>
+            <p class="form__status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Placeholder behaviour until the form is connected (see the note above the form).
+    const formEl = document.getElementById('contact-form');
+    formEl?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const status = formEl.querySelector('.form__status');
+      if (status) status.textContent = formEl.dataset.message ?? '';
+    });
+  </script>
+</Base>

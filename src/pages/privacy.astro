@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import PageIntro from '../components/PageIntro.astro';
+import content from '../content/site.json';
+
+const { privacy } = content;
+---
+<Base title={privacy.title}>
+  <section class="page-top section" style="padding-bottom: var(--space-section)">
+    <div class="container">
+      <PageIntro label={privacy.label} heading={privacy.heading} />
+      <div class="prose reveal">
+        {privacy.body.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+  </section>
+</Base>

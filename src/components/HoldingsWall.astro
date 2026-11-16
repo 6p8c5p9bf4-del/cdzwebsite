@@ -1,0 +1,29 @@
+---
+// The off-grid wall of holdings. Tile positions are set in src/styles/global.css (.pos-1 to .pos-12).
+import Picture from './Picture.astro';
+
+const { items } = Astro.props;
+---
+<ul class="wall">
+  {items.map((holding, index) => (
+    <li class:list={['tile', `tile--${holding.shape}`, `pos-${index + 1}`, 'reveal']}>
+      {holding.detail ? (
+        <a class="tile__link" href={`/holdings/${holding.slug}`}>
+          <div class="tile__frame"><Picture image={holding.image} /></div>
+          <div class="tile__caption">
+            <p class="tile__name">{holding.name}</p>
+            <p class="tile__desc">{holding.description}</p>
+          </div>
+        </a>
+      ) : (
+        <div>
+          <div class="tile__frame"><Picture image={holding.image} /></div>
+          <div class="tile__caption">
+            <p class="tile__name">{holding.name}</p>
+            <p class="tile__desc">{holding.description}</p>
+          </div>
+        </div>
+      )}
+    </li>
+  ))}
+</ul>
